@@ -1,37 +1,20 @@
-package com.bit2017.jdbc;
+package com.bit2019.jdbc.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import com.bit2017.jdbc.vo.EmployeesVo;
-import com.bit2019.jdbc.dao.EmployeesDao;
 
-public class HRSearchEmpoyee {
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		
-		//키워드 입력
-		System.out.print("입력> ");
-		String keyword = scanner.nextLine();
-		
-		//검색
-		searchEmployees(keyword);
-		List<EmployeesVo> list = searchEmployees(keyword);
-		
-		//출력
-		displayEmployees( list );
-		
-		//자원정리
-		scanner.close();
-	}
+public class EmployeesDao {
 	
-	
-	/*private static void searchEmployees(String keyword){
+	public List<EmployeesVo> getList(String keyword){
+		List<EmployeesVo> list = new ArrayList<EmployeesVo>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -81,21 +64,19 @@ public class HRSearchEmpoyee {
 			}catch(SQLException e){
 				System.out.println("error: " + e );
 			}
-		}*/
-			
-		private static List<EmployeesVo> searchEmployees(String keyword) {
-			 		EmployeesDao dao = new EmployeesDao();
-			 		List<EmployeesVo> list = dao.getList(keyword);
-					return list;
-			 	}
-		private static void displayEmployees( List<EmployeesVo> list ) {
-			 		for( EmployeesVo vo : list ) {
-			 			System.out.println( 
-			 				vo.getFirstName() + " " + vo.getLastName() + ":" +
-			 				vo.getEmail() + ":" +
-			 				vo.getPhoneNumber() + ":" +
-			 				vo.getHireDate() );
-			 		}
 		}
-}
+		
+		return list;
+	}
+	
+	public List<EmployeesVo> getList(){
+		return null;
 
+	}
+
+	public List<EmployeesVo> getList(int page){
+		return null;
+
+	}
+
+}
